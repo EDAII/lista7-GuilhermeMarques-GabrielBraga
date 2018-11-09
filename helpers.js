@@ -1,4 +1,4 @@
-function drawText() {
+function drawText(order) {
     textSize(64);
     var s = "";
     for (let i = 0; i < order.length; i++) {
@@ -26,7 +26,7 @@ function calcDistance(points, orders) {
     return sum;
 }
 
-function nextOrder() {
+function nextOrder(order) {
     let largestI = -1;
     for (let i = 0; i < order.length - 1; i++) {
         if (order[i] < order[i + 1]) {
@@ -51,5 +51,5 @@ function nextOrder() {
     var endArray = order.splice(largestI + 1)
     endArray.reverse()
     order = order.concat(endArray)
-
+    return order
 }
