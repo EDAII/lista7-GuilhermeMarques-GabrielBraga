@@ -8,9 +8,9 @@ var best;
 
 function setup() {
 
-    createCanvas(400, 600)
+    createCanvas(innerWidth, innerHeight)
     for (let i = 0; i < totalCities; i++) {
-        let x = random(width)
+        let x = constrain(random(width), 30, width/2 - 30);
         let y = random(height / 2)
         cities[i] = createVector(x, y);
         order[i] = i
@@ -75,7 +75,7 @@ function drawText() {
       s += order[i];
     }
     fill(255);
-    text(s, 5, height - 5);
+    text(s, 25, height - 25);
 }
 
 function swap(a, i, j) {
