@@ -1,41 +1,3 @@
-// // Solves salesperson by checking all possible permutations
-// function bruteForce() {
-//     // Draw every path tested
-//     stroke(202, 200)
-//     strokeWeight(2)
-//     noFill()
-//     beginShape()
-//     for (let i = 0; i < order.length; i++) {
-//         let city = order[i]
-//         vertex(cities[city].x, cities[city].y);
-//     }
-//     endShape()
-
-//     // Draw the best path until now
-//     stroke(255, 20, 200)
-//     strokeWeight(4)
-//     noFill()
-//     beginShape()
-//     for (let i = 0; i < best.length; i++) {
-//         vertex(cities[best[i]].x, cities[best[i]].y);
-//     }
-//     endShape()
-
-//     // Draw the nodes
-//     noStroke()
-//     fill(202)
-//     for (let i = 0; i < cities.length; i++) {
-//         ellipse(cities[i].x, cities[i].y, 16, 16);
-//     }
-
-//     // Calculates path distance and saves the best till now
-//     let d = calcDistance(cities, order);
-//     if (d < recordDistance) {
-//         recordDistance = d
-//         best = order.slice()
-//     }
-// }
-
 class Cities {
   constructor(citiesList, orders) {
     this.cities = citiesList;
@@ -67,6 +29,18 @@ class Cities {
   setBestOrder(bestOrder, recordDistance) {
     this.recordDistance = recordDistance;
     this.best = bestOrder;
+  }
+
+  drawSubPath(origin, destiny) {
+    let cityA = this.cities[origin]
+    let cityB = this.cities[destiny]
+    stroke(255, 100, 0);
+    strokeWeight(2)
+    beginShape()
+    vertex(cityA.x, cityA.y)
+    vertex(cityB.x, cityB.y);
+    endShape()
+    this.drawCities()
   }
 
   drawCities() {
@@ -116,5 +90,32 @@ class Cities {
     }
     
     this.order = nextOrder(this.order);
+  }
+
+  distance(subset, origin) {
+    console.log('ENTER DISTANCE')
+    let minDist = 100000000
+    let d
+
+    if (subset.length === 1) {
+      return 0
+    }
+
+    for (let node in subset) {
+      if (node != origin) {
+        this.drawSubPath(origin, node)
+        d = this.adjMatrix[origin][node]
+        if (d < minDist) {
+          minDist = d
+        }
+      }
+    }
+
+    return minDist
+  }
+  
+  solve(index) {
+    console.log('ENTER SOLVE')
+    this.distance(this.order, index)
   }
 }

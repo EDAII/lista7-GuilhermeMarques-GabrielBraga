@@ -1,6 +1,7 @@
-var totalCities = 8
+var totalCities = 6
 var cities = []
 var order = []
+let globalIdx = 0
 var recordDistance
 var best
 var c
@@ -33,6 +34,7 @@ function setup() {
 
 function draw() {
     background(55)
+    frameRate(3)
 
     push()
     c.drawPaths()
@@ -45,10 +47,16 @@ function draw() {
     
     push()
     translate(width/2, 0)
-    c2.drawPaths()
-    c2.drawBestPath()
-    c2.drawCities()
-    c2.calculate()
+    // c2.drawPaths()
+    // c2.drawBestPath()
+    // c2.drawCities()
+    // c2.calculate()
+    if (globalIdx < c2.order.length) {
+        c2.solve(globalIdx);
+        globalIdx++
+    } else {
+        globalIdx = 0
+    }
 
     drawText(c2.order)
     pop()
