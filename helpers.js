@@ -56,6 +56,6 @@ function nextOrder(order) {
 
 const getAllSubsets = theArray =>
   theArray.reduce(
-    (subsets, value) => subsets.concat(subsets.map(set => [value, ...set])),
+        (subsets, value) => subsets.concat(subsets.map(set => [...set, value])),
     [[]]
   );
