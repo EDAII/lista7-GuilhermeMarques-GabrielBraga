@@ -59,3 +59,13 @@ const getAllSubsets = theArray =>
         (subsets, value) => subsets.concat(subsets.map(set => [...set, value])),
     [[]]
   );
+
+function iterationCopy(src) {
+    let target = {};
+    for (let prop in src) {
+        if (src.hasOwnProperty(prop)) {
+            target[prop] = src[prop];
+        }
+    }
+    return target;
+}

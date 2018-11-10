@@ -51,13 +51,9 @@ function draw() {
     // c2.drawBestPath()
     // c2.drawCities()
     // c2.calculate()
-    if (globalIdx < c2.order.length) {
-        c2.solve(globalIdx);
-        globalIdx++
-    } else {
-        globalIdx = 0
-    }
+    c2.solve(0);
 
     drawText(c2.order)
+    // noLoop();
     pop()
 }
