@@ -17,8 +17,8 @@ function setup() {
         order[i] = i
     }
 
-    c = new Cities(cities.slice(), order.slice())
-    c2 = new Cities(cities.slice(), order.slice())
+    c = new BruteCities(cities.slice(), order.slice())
+    c2 = new DpCities(cities.slice(), order.slice())
     
 
     let d = calcDistance(cities, order)
@@ -47,12 +47,7 @@ function draw() {
     
     push()
     translate(width/2, 0)
-    // c2.drawPaths()
-    // c2.drawBestPath()
-    // c2.drawCities()
-    // c2.calculate()
     c2.solve(0);
-
     drawText(c2.order)
     // noLoop();
     pop()
